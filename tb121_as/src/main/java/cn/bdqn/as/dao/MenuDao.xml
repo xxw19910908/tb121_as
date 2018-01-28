@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.as.dao.MenuDao">
+ 
+ <resultMap type="Menu" id="menuType">
+ 	<id property="id" column="f1Id"/>
+ 	<result property="functionName" column="funcName1"/>
+ 	<result property="funcUrl" column="url1"></result>
+ 	
+ 	<collection property="menus" ofType="Menu">
+ 	<id property="id" column="f2Id"/>
+ 	<result property="functionName" column="funcName2"/>
+ 	<result property="funcUrl" column="url2"></result>
+ 	</collection>
+ 	
+ </resultMap>
+ 
+ 
+ <select id="getAll" resultMap="menuType">
+select f1.id f1Id, f1.functionName funcName1,f1.funcUrl url1,
+f2.id f2Id,f2.functionName funcName2,f2.funcUrl url2 from as_function f1 
+inner join as_function f2 
+on f1.id=f2.parentId order by 
+f1.id asc
+ 
+ </select>
+
+</mapper>

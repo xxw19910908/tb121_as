@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="cn.bdqn.as.dao.UserDao">
+ 
+ 	<select id="getUserByNameAndPwd" resultType="User">
+ 	
+ 		select id userId,userName,roleId from as_user 
+ 		where userCode=#{userCode} and userPassword=#{pwd}
+ 	
+ 	</select>
+ 	
+ 	<select id="getAll" resultType="User">
+ 	
+ 	select au.id userId,userName,ar.roleName from as_user au inner join 
+ 	as_role ar on ar.id=au.roleId
+ 	
+ 	</select>
+ 	
+ 	
+ 	 	<select id="getTotal" resultType="integer">
+ 	
+ 	select count(id) from as_user
+ 	</select>
+
+</mapper>
